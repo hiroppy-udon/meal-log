@@ -1,0 +1,71 @@
+:root {
+  --bg: #15180f;
+  --surface: #1f2317;
+  --ink: #e8e4d9;
+  --ink-dim: #9aa08c;
+  --line: #333a27;
+
+  color-scheme: dark;
+  font-family: system-ui, -apple-system, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+body {
+  /* Keeps content clear of the notch and home indicator when installed. */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+    env(safe-area-inset-bottom) env(safe-area-inset-left);
+  -webkit-text-size-adjust: 100%;
+}
+
+.shell {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+.note {
+  margin: 0.25rem 0 2rem;
+  color: var(--ink-dim);
+  font-size: 0.875rem;
+}
+
+.checks {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1rem;
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: var(--surface);
+  font-size: 0.875rem;
+}
+
+.checks dt {
+  color: var(--ink-dim);
+  white-space: nowrap;
+}
+
+.checks dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
