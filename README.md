@@ -2,7 +2,9 @@
 
 A web app for logging meals and food spending, built with every design decision recorded as an ADR.
 
-**Status: in development.** Design is complete; implementation has just started.
+**[meal-log-sandy.vercel.app](https://meal-log-sandy.vercel.app/)**
+
+**Status: in development.** Design is complete; implementation has just started — the live page is a stage 1 placeholder confirming the deploy path and PWA install.
 
 ---
 
