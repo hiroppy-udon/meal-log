@@ -69,3 +69,101 @@ h1 {
   margin: 0;
   font-variant-numeric: tabular-nums;
 }
+
+.form {
+  display: grid;
+  gap: 0.375rem;
+  max-width: 22rem;
+  margin-top: 2rem;
+}
+
+.form label {
+  color: var(--ink-dim);
+  font-size: 0.8125rem;
+}
+
+.form input {
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 0.375rem;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 1rem; /* under 16px, iOS zooms the page on focus */
+}
+
+.form input:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--ink-dim);
+  outline-offset: 2px;
+}
+
+button {
+  padding: 0.625rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.375rem;
+  background: var(--ink);
+  color: var(--bg);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+button.quiet {
+  background: transparent;
+  color: var(--ink-dim);
+  font-weight: 400;
+}
+
+.form button {
+  margin-top: 0.75rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.error {
+  padding: 0.625rem 0.75rem;
+  border: 1px solid #6b3a3a;
+  border-radius: 0.375rem;
+  background: #2a1a1a;
+  color: #f0c6c6;
+  font-size: 0.875rem;
+}
+
+.rows {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+.rows li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 0.375rem;
+  background: var(--surface);
+  font-variant-numeric: tabular-nums;
+}
+
+.rows .id {
+  color: var(--ink-dim);
+}
+
+.rows .dim {
+  color: var(--ink-dim);
+}
