@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { supabase } from './supabase'
+import { missingConfig, supabase } from './supabase'
 import Login from './Login'
 import Today from './Today'
 
@@ -9,9 +9,12 @@ import Today from './Today'
 
 function App() {
   const [session, setSession] = useState(null)
-  const [checking, setChecking] = useState(true)
+  // With no configuration there is no session to look for, so nothing to wait on.
+  const [checking, setChecking] = useState(!missingConfig)
 
   useEffect(() => {
+    if (missingConfig) return
+
     function apply(next) {
       setSession(next)
       setChecking(false)
@@ -28,6 +31,7 @@ function App() {
     return () => listener.subscription.unsubscribe()
   }, [])
 
+  if (missingConfig) return <MissingConfig />
   if (checking) return <main className="shell" />
   if (!session) return <Login />
 
@@ -41,6 +45,39 @@ function App() {
         </button>
       </footer>
     </>
+  )
+}
+
+/**
+ * Shown when the build went out without the two Supabase values. Vite bakes
+ * them in at build time, so this cannot be fixed in the running page — the
+ * build has to be done again with them present.
+ */
+function MissingConfig() {
+  return (
+    <main className="shell">
+      <h1>meal-log</h1>
+      <p className="error">
+        Supabase に繋ぐ設定が、このビルドに入っていません。
+      </p>
+      <p className="note">
+        必要なのは <code>VITE_SUPABASE_URL</code> と{' '}
+        <code>VITE_SUPABASE_ANON_KEY</code> の2つです。
+      </p>
+      <dl className="checks">
+        <dt>手元で動かすとき</dt>
+        <dd>
+          <code>.env.local</code> に書く（<code>.env.example</code> が見本）
+        </dd>
+        <dt>Vercel</dt>
+        <dd>
+          Settings → Environment Variables。
+          <strong>確認用の環境（Preview）にも入れる</strong>必要があります
+        </dd>
+        <dt>どちらも共通</dt>
+        <dd>値を入れた後、もう一度ビルドし直すこと</dd>
+      </dl>
+    </main>
   )
 }
 

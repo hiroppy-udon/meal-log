@@ -429,3 +429,15 @@ input.cell {
   color: var(--ink-dim);
   font-size: 0.8125rem;
 }
+
+code {
+  padding: 0.0625rem 0.25rem;
+  border-radius: 0.1875rem;
+  background: var(--surface);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8125em;
+}
+
+.checks dd code {
+  background: var(--bg);
+}
