@@ -167,3 +167,265 @@ button.quiet {
 .rows .dim {
   color: var(--ink-dim);
 }
+
+/* ---------------------------------------------------------------------------
+   The day
+   A row is a slot. Cells sit where they are read, and editing happens in the
+   same spot — so a cell and the field that replaces it must line up exactly.
+   --------------------------------------------------------------------------- */
+
+.day-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.day-date {
+  position: relative;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* The native date picker sits invisibly on top of the label, so tapping the
+   date opens it without a separate control taking up room. */
+.day-date input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  opacity: 0;
+  border: 0;
+  background: none;
+}
+
+.today-jump {
+  display: block;
+  margin: -0.5rem auto 1rem;
+  font-size: 0.8125rem;
+}
+
+.icon {
+  padding: 0.25rem 0.625rem;
+  border: 1px solid var(--line);
+  border-radius: 0.375rem;
+  background: transparent;
+  color: var(--ink-dim);
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.icon.danger {
+  border-color: transparent;
+  font-size: 0.875rem;
+}
+
+.frame {
+  padding: 0.25rem 0;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: var(--surface);
+}
+
+.rule {
+  height: 1px;
+  margin: 0.25rem 0;
+  background: var(--line);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0 0.5rem;
+  min-height: 2.75rem; /* a comfortable tap target on a phone */
+}
+
+.row .label {
+  flex: 0 0 2.75rem;
+  color: var(--ink-dim);
+  font-size: 0.8125rem;
+}
+
+.row.edge .label {
+  color: var(--ink);
+}
+
+/* A cell and the input that replaces it share these, so nothing shifts when
+   editing starts. */
+.cell {
+  min-height: 2.25rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 0.3125rem;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+}
+
+button.cell:hover {
+  border-color: var(--line);
+}
+
+input.cell {
+  border-color: var(--ink-dim);
+  background: var(--bg);
+}
+
+.cell.time {
+  flex: 0 0 4.25rem;
+}
+
+.cell.source {
+  flex: 0 0 3rem;
+}
+
+.cell.amount {
+  flex: 0 0 5rem;
+  text-align: right;
+}
+
+.cell.grow {
+  flex: 1 1 6rem;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* An empty slot is empty. "なし" is a recorded value and reads as text, so the
+   two can never be confused (仕様 6.2). */
+.blank {
+  display: inline-block;
+  width: 0.75rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.cell.choices {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0.25rem 0;
+}
+
+.chip {
+  padding: 0.3125rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 0.3125rem;
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
+.chip.on {
+  background: var(--ink);
+  color: var(--bg);
+  font-weight: 600;
+}
+
+.chip.danger {
+  color: #e2a0a0;
+  border-color: #5a3434;
+}
+
+.note-mark {
+  flex: 0 0 1.25rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--line);
+  font-size: 0.5rem;
+  line-height: 1;
+}
+
+.note-mark.on {
+  color: var(--ink-dim);
+}
+
+.note-mark.empty {
+  display: inline-block;
+}
+
+.outside {
+  margin-top: 1rem;
+}
+
+.row.shopping {
+  padding-left: 0;
+}
+
+.note-preview {
+  color: var(--ink-dim);
+}
+
+.add {
+  margin: 0.25rem 0 1rem;
+  font-size: 0.8125rem;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.875rem;
+}
+
+.total strong {
+  font-variant-numeric: tabular-nums;
+}
+
+.note-editor {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.note-editor label {
+  color: var(--ink-dim);
+  font-size: 0.8125rem;
+}
+
+.note-editor textarea {
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 0.375rem;
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.note-editor .actions {
+  margin: 0;
+}
+
+.app-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 40rem;
+  margin: 2rem auto 0;
+  padding: 1rem;
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  color: var(--ink-dim);
+  font-size: 0.8125rem;
+}
